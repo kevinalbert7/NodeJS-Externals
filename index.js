@@ -1,21 +1,14 @@
-const express = require('express');
-const app = express();
-const axios = require("axios")
-const port = 5000;
-const characters = require('./characters.json')
+const express = require('express')
+const app = express()
+const axios = require('axios')
+const port = 5000
 
-    //Exercice1
-        //1
+const gameOfThrones = require('./routes/game-of-thrones')
+const pokemon = require('./routes/pokemon')
 
-app.get('/game-of-thrones/json/characters', (req, res) => {
-    res.send(characters);
-  });
-
-        //2
-app.get('/game-of-thrones/url/characters', (req, res) => {
-res.send(characters);
-});
+app.use('/game-of-thrones', gameOfThrones)
+app.use('/pokemon', pokemon)
 
 app.listen(port, () => {
-  console.log('Server started on port: ' + port);
-});
+  console.log(`Server started on port ${port}`)
+})
